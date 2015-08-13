@@ -1,0 +1,32 @@
+    {
+    "name": "exs/silex-darklaunch-provider",
+    "description": "Dark launch provider bundle for Silex2",
+    "keywords": [
+        "silex",
+        "darklaunch",
+        "provider"
+    ],
+    "homepage": "https://github.com/ExSituMarketing/EXS-silex-darklaunch-provider",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "slee",
+            "email": "lee@ex-situ.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "~2.0@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "EXS\\DarklaunchProvider": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "EXS/DarklaunchProvider",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }    
+}
