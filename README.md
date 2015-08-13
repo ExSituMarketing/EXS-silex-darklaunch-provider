@@ -51,7 +51,7 @@ $app['tf.active.ips'] = array(
 
 ## USAGE
 
-1. Declare the service 
+Declare the service 
 
 ```php
 //...
@@ -62,7 +62,7 @@ $darkLauncher = new DarklaunchService();
 ```
 
 
-2. wrap the function or service to be dark launched and triggered by ip
+Wrap the function or service to be dark launched and triggered by ip
 ```php
 //...
 if(darkLauncher->isActiveIp()) {
