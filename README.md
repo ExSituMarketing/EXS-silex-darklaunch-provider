@@ -40,7 +40,7 @@ $app->register(new \EXS\DarklaunchProvider\Providers\Services\DarklaunchProvider
 Add ips to active dark launched functions or services in config.php:
 ```php
 //...
-$app['tf.active.ips'] = array(
+$app['exs.active.ips'] = array(
     '127.0.0.1',
     MORE IPS HERE
 );
@@ -57,7 +57,30 @@ Declare the service
 //...
 use EXS\DarklaunchProvider\Services\DarklaunchService;
 
-$darkLauncher = new DarklaunchService();
+$darkLauncher = new DarklaunchService(ARRAY_OF_ACTIVE_IPS);
+//...
+
+// or inject the service in your service provider
+
+//...
+use Pimple\ServiceProviderInterface;
+use Pimple\Container;
+
+class YourServiceProvider implements ServiceProviderInterface
+{
+    public function register(Container $container)
+    {
+        $container[YOUR_SERVICE_PROVIDER_NAME] = ( function ($container) {
+            return new YOUR_SERVICE_PROVIDER_LOCATION($container['exs.serv.darklaunch']);
+        });                
+    }
+}
+
+// in your service constructor
+public function __construct(DarklaunchService $darklaunchService)
+{              
+    $this->darklaunchService = $darklaunchService;
+}
 //...
 ```
 
@@ -65,13 +88,13 @@ $darkLauncher = new DarklaunchService();
 Wrap the function or service to be dark launched and triggered by ip
 ```php
 //...
-if(darkLauncher->isActiveIp()) {
+if($darkLauncher->isActiveIp()) {
     FUNCTION_TO_BE_DARKLAUNCHED
 }
 
 // or if you already know the user ip
 
-if(darkLauncher->isActiveIp(USER_IP_HERE)) {
+if($darkLauncher->isActiveIp(USER_IP_HERE)) {
     FUNCTION_TO_BE_DARKLAUNCHED
 }
 //...
